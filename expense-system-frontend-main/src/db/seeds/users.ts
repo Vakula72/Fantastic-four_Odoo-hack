@@ -1,0 +1,160 @@
+import { db } from '@/db';
+import { users } from '@/db/schema';
+
+async function main() {
+    const sampleUsers = [
+        // ACME CORP USERS (company_id: 1)
+        {
+            companyId: 1,
+            name: 'John Admin',
+            email: 'admin@acme.com',
+            passwordHash: 'hashed_password_123',
+            role: 'ADMIN',
+            managerId: null,
+            isActive: true,
+            createdAt: new Date('2024-01-01').toISOString(),
+            updatedAt: new Date('2024-01-01').toISOString(),
+        },
+        {
+            companyId: 1,
+            name: 'Sarah Manager',
+            email: 'manager1@acme.com',
+            passwordHash: 'hashed_password_123',
+            role: 'MANAGER',
+            managerId: null,
+            isActive: true,
+            createdAt: new Date('2024-01-02').toISOString(),
+            updatedAt: new Date('2024-01-02').toISOString(),
+        },
+        {
+            companyId: 1,
+            name: 'Mike Manager',
+            email: 'manager2@acme.com',
+            passwordHash: 'hashed_password_123',
+            role: 'MANAGER',
+            managerId: null,
+            isActive: true,
+            createdAt: new Date('2024-01-03').toISOString(),
+            updatedAt: new Date('2024-01-03').toISOString(),
+        },
+        {
+            companyId: 1,
+            name: 'Alice Employee',
+            email: 'employee1@acme.com',
+            passwordHash: 'hashed_password_123',
+            role: 'EMPLOYEE',
+            managerId: 2,
+            isActive: true,
+            createdAt: new Date('2024-01-04').toISOString(),
+            updatedAt: new Date('2024-01-04').toISOString(),
+        },
+        {
+            companyId: 1,
+            name: 'Bob Employee',
+            email: 'employee2@acme.com',
+            passwordHash: 'hashed_password_123',
+            role: 'EMPLOYEE',
+            managerId: 2,
+            isActive: true,
+            createdAt: new Date('2024-01-05').toISOString(),
+            updatedAt: new Date('2024-01-05').toISOString(),
+        },
+        {
+            companyId: 1,
+            name: 'Carol Employee',
+            email: 'employee3@acme.com',
+            passwordHash: 'hashed_password_123',
+            role: 'EMPLOYEE',
+            managerId: 3,
+            isActive: true,
+            createdAt: new Date('2024-01-06').toISOString(),
+            updatedAt: new Date('2024-01-06').toISOString(),
+        },
+        {
+            companyId: 1,
+            name: 'David Employee',
+            email: 'employee4@acme.com',
+            passwordHash: 'hashed_password_123',
+            role: 'EMPLOYEE',
+            managerId: 3,
+            isActive: true,
+            createdAt: new Date('2024-01-07').toISOString(),
+            updatedAt: new Date('2024-01-07').toISOString(),
+        },
+        {
+            companyId: 1,
+            name: 'Eva Employee',
+            email: 'employee5@acme.com',
+            passwordHash: 'hashed_password_123',
+            role: 'EMPLOYEE',
+            managerId: 2,
+            isActive: true,
+            createdAt: new Date('2024-01-08').toISOString(),
+            updatedAt: new Date('2024-01-08').toISOString(),
+        },
+        // GLOBAL TECH USERS (company_id: 2)
+        {
+            companyId: 2,
+            name: 'Emma Admin',
+            email: 'admin@globaltech.com',
+            passwordHash: 'hashed_password_123',
+            role: 'ADMIN',
+            managerId: null,
+            isActive: true,
+            createdAt: new Date('2024-01-09').toISOString(),
+            updatedAt: new Date('2024-01-09').toISOString(),
+        },
+        {
+            companyId: 2,
+            name: 'Frank Manager',
+            email: 'manager@globaltech.com',
+            passwordHash: 'hashed_password_123',
+            role: 'MANAGER',
+            managerId: null,
+            isActive: true,
+            createdAt: new Date('2024-01-10').toISOString(),
+            updatedAt: new Date('2024-01-10').toISOString(),
+        },
+        {
+            companyId: 2,
+            name: 'Grace Employee',
+            email: 'employee1@globaltech.com',
+            passwordHash: 'hashed_password_123',
+            role: 'EMPLOYEE',
+            managerId: 10,
+            isActive: true,
+            createdAt: new Date('2024-01-11').toISOString(),
+            updatedAt: new Date('2024-01-11').toISOString(),
+        },
+        {
+            companyId: 2,
+            name: 'Henry Employee',
+            email: 'employee2@globaltech.com',
+            passwordHash: 'hashed_password_123',
+            role: 'EMPLOYEE',
+            managerId: 10,
+            isActive: true,
+            createdAt: new Date('2024-01-12').toISOString(),
+            updatedAt: new Date('2024-01-12').toISOString(),
+        },
+        {
+            companyId: 2,
+            name: 'Iris Employee',
+            email: 'employee3@globaltech.com',
+            passwordHash: 'hashed_password_123',
+            role: 'EMPLOYEE',
+            managerId: 10,
+            isActive: true,
+            createdAt: new Date('2024-01-13').toISOString(),
+            updatedAt: new Date('2024-01-13').toISOString(),
+        }
+    ];
+
+    await db.insert(users).values(sampleUsers);
+    
+    console.log('✅ Users seeder completed successfully');
+}
+
+main().catch((error) => {
+    console.error('❌ Seeder failed:', error);
+});
